@@ -6,7 +6,7 @@ mac = input("Enter BSSID here: ").replace(':', '')
 try:
     response = requests.get('http://mobile.maps.yandex.net/cellid_location/?clid=1866854&lac=-1&cellid=-1&operatorid=null&countrycode=null&signalstrength=-1&wifinetworks='+mac+':-65&app=ymetro')
 except Exception:
-    print('Can\'t connect to internet.')
+    print('Unable to connect to the internet.')
     exit()
 
 response.encoding = 'utf-8'
@@ -16,7 +16,7 @@ dicto = dict(xmltodict.parse(response.text))
 try:
     dcordos = dict(dict(dicto['location'])['coordinates'])
 except KeyError:
-    print("bssid not finded.")
+    print("Bssid location not found.")
     exit()
 
 print("""
